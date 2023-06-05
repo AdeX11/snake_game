@@ -6,11 +6,16 @@
 #include <sys/stat.h>
 int main(void){
     printf("Welcome to snake game!\n" 
-    "* Use the arrows on your keyboard to move left, right, up, and down, respectively.\n" 
+    "* Use the arrows on your keyboard to move left, right, up, and down, respectively.\n"
     "* The snake can only move forwards, it cannot backtrack.\n"
-    "* Eating good food 'O' and '+' will make the snake grow, eating junk food 'X' and '!' will make the snake shrink.\n" 
+    "* Eating good food 'O' and '+' will make the snake grow, eating junk food 'X' and '!' will make the snake shrink.\n"
+    "* Avoid Red enemy snakes or you will lose a life.\n"
+    "* You can bounce off the obstacles 'H'\n"
     "* Every good food eaten is worth 20 points, you lose 10 points for every junk food eaten.\n"
-    "* While playing you can change the window size using '+' and '-'\nYou can press 'Q' at any time to quit the game, enjoy :)\n");
+    "* While playing you can change the window size using '+' and '-'\n"
+    "* You can press 'P' to pause the game.\n"
+    "* You can save your current game in the pause menu and load it up when you restart the game.\n"
+    "* You can press 'Q' at any time to quit the game, enjoy :)\n");
     printf("Enter 's' to start:\n");
     char option;
     bool check =false;
