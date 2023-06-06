@@ -25,7 +25,6 @@ snake_game: $(OBJ)
 
 clean:
 	rm -f *~ core $(INCDIR)/*~ 
-	rm -f  snake_game
 	rm -f *.o
 	rm -rf saves
 etags: 
