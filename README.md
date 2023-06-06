@@ -11,6 +11,8 @@ $ ./snake_game
 
 you can also make clean after to get rid of all the extra files generated and the saved games
 
+$ make clean
+
 If you have problems compiling, just run the pre-compiled executable
 
 $ ./snake_game 
