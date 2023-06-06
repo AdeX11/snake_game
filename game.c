@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include "obstacle.h"
 #include <menu.h>
-   
+#define MAX_LENGTH 100   
 void generate_points(int *food_x, int *food_y, int width, int height, int x_offset, int y_offset){
     *food_x = rand() % width + x_offset;
     *food_y = rand() % height + y_offset;
@@ -328,7 +328,7 @@ void game(){
 		clear();
 		state = LOADING;
 	        //mvprintw(50,20,"What is the file name: ?\n");
-	        mvprintw(20,80,"What is the fileName(Press Enter when finished): ?\n");
+	        // mvprintw(20,80,"What is the fileName(Press Enter when finished): ?\n");
 		break;
             }
 
@@ -670,7 +670,7 @@ void game(){
                 clear();
                 state = LOADING;
                 //mvprintw(50,20,"What is the file name: ?\n");
-                mvprintw(20,80,"What is the fileName(Press Enter when finished): ?\n");
+               // mvprintw(20,80,"What is the fileName(Press Enter when finished): ?\n");
                 break;
             }
             
@@ -1055,8 +1055,20 @@ void game(){
             break;
 
 	case LOADING:
-		mvprintw(20,80,"What is the fileName(Press Enter when finished): ?\n");
-		DIR *dir;
+		mvprintw(20,70,"What is the fileName(Press Enter when finished): ");
+	        char strr[MAX_LENGTH + 1];
+                memset(strr, 0, sizeof(strr));
+                int chaa, tt = 0;
+                while ((chaa = getch()) != '\n' && tt < MAX_LENGTH) {
+                  if(chaa != ERR)
+                  {
+                    strr[tt++] = chaa;  // Store the typed character in the input buffer
+                    mvprintw(20, 120, "%s", strr);  // Print the input
+                    refresh();
+                  }        // Update the screen
+                } 
+  
+                DIR *dir;
         	struct dirent *nextDir;
   	        dir = opendir("saves");
 		int x = 30;
@@ -1074,15 +1086,15 @@ void game(){
     		}
 		refresh();                
                 char store[20]  = "saves/";
-                FILE * fh;char * string = (char *)malloc(100*sizeof(char));
-                scanf("%s",string);strcat(store,string);
+                FILE * fh;
+                strcat(store,strr);
 		int length = strlen(store);
 		const char *last_five = &store[length-5];
 		fh = fopen(store,"rb");
                 if(fh ==NULL)
                 {
                   clear();
-                  mvprintw(30,80,"This file doesnt exist,returning to game...");
+                  mvprintw(23,70,"This file doesnt exist,returning to game...");
                   refresh();
                   sleep(3);
                   state = ALIVE;
@@ -1218,7 +1230,7 @@ void game(){
                 {
                 
                  state=SAVING;
-                 mvprintw(20,80, "What File Name would you like to save the file: ?");
+                // mvprintw(20,80, "What File Name would you like to save the file: ");
 		 break;
 		}// save game state   NOT DONE
                 else if (choice == 2) {
@@ -1233,8 +1245,23 @@ void game(){
 	case SAVING:
 	    clear();
 	    char file[20]="saves/";
-            char*str = (char *)malloc(100*sizeof(char));
-            scanf("%s",str);strcat(file,str);
+	    char str[MAX_LENGTH + 1];
+            memset(str, 0, sizeof(str));
+            int cha, t = 0;
+            mvprintw(20,70, "What File Name would you like to save the file: ");
+            while ((cha = getch()) != '\n' && t < MAX_LENGTH) {
+              if(cha != ERR)
+              {
+                str[t++] = cha;  // Store the typed character in the input buffer
+                mvprintw(20, 118, "%s", str);  // Print the input
+                refresh();
+              }        // Update the screen
+            } 
+            //char*str = (char *)malloc(100*sizeof(char));
+            //scanf("%s",str);
+            strcat(file,str);
+           // mvprintw(20,130, "%s", str);
+            refresh();
             int length2 = strlen(file);
             const char *last_five2 = &file[length2-5];
 	    if(strcmp(".game",last_five2) != 0)

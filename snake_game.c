@@ -15,6 +15,9 @@ int main(void){
     "* While playing you can change the window size using '+' and '-'\n"
     "* You can press 'P' to pause the game.\n"
     "* You can save your current game in the pause menu and load it up when you restart the game.\n"
+    "* You can also just press 'L' during game play to load up a previously saved game.\n"
+    "* When saving the game, ensure to use a .game extension. For example, 'play1.game'.\n"
+    "* For Multiplayer mode(2 players), Player 1 can use the 'WASD' keys and Player 2 can use the arrow keys.\n"
     "* You can press 'Q' at any time to quit the game, enjoy :)\n");
     printf("Enter 's' to start:\n");
     char option;
